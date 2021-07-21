@@ -1,0 +1,82 @@
+%% 0207 %%
+    ## Ex1
+        - PCST
+        - PCST -> 88% minimum number of customer
+        - PCST -> max number of hops
+        
+    ## Ex2
+        - MTSP 
+        - MTSP -> choose wharehouse location, wharehouse != root
+        - MTSP -> 3 wharehouses, 1 vehicle
+        
+%% 1206 %%
+    ## Ex1
+        - MST -> root degree
+        - MST -> nodes degree odd vs even
+        - MST -> hubs
+    ## Ex2
+        - mTSP -> m=2
+        - mTSP -> 2 wharehouses
+        - mTSP -> 2 wharehouses + storage costs
+
+%% 1806 %%
+    ## Ex1
+        - PCST
+        - PCST -> 88% minimum number of customer
+        - PCST -> max number of hops
+        - PCST -> router in root
+    ## Ex2
+        - ATSP -> MTZ lifted formulation + SEC2 inequalities
+        - ATSP -> choose wharehouse location, MTZ lifted formulation + SEC2 inequalities
+        - mTSP -> 3 wharehouses, 3 veihcle
+        
+%% 1906 %%
+    ## Ex1
+        - PCST -> budget constraint
+        - PCST -> 3 year, extend last solution, budget constraints
+    ## Ex2
+        - ATSP -> choose wharehouse location
+        - mTSP -> 3 wharehouses, 3 veihcle
+        
+% 4 GIUGNO 19 %
+ _R1
+     ## Ex1
+         - MST -> nodes degree vs root degree
+         - PCST -> max number of hops 
+         - PCST[Bonus] -> extend last solution, router in terminal nodes
+     ## Ex2
+         - mTSP
+         - mTSP -> 2 wharehouses
+         - mTSP -> m=2 
+ _R2
+     ## Ex1
+         - PCST -> budget constraint
+         - PCST -> 2 year, extend last solution, budget constraints
+     ## Ex2
+         - mTSP -> m=2
+         - mTSP -> m=2, tour must include a sequence
+         - mTSP -> 3 wharehouses, 1 vehicle
+
+% Exercises MST %
+    ## Ex1
+        - MST
+        - MST, 1 hub
+    ## Ex2
+        - different hub types (z variables), multy commodity
+
+% Exercises PCST %
+    ## Ex1
+        - PCST
+        - PCST -> 82% minimum number of customer
+        - PCST -> router in root 
+
+% Esame %
+    ## Ex1
+        - PCST -> max number of hops
+        - PCST -> router in root 
+        - PCST -> nodes degree
+    ## Ex2
+        - ATSP -> lifted MTZ
+        - mTSP -> m=2
+        - ATSP -> 2 wharehouses
+        

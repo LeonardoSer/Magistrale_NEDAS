@@ -1,0 +1,86 @@
+:- dynamic(prodotto/3).
+
+settore(a1).
+settore(a2).
+settore(b1).
+settore(b2).
+
+prodotto(tastiera, 50, a1). 
+prodotto(tv, 30, a1).
+prodotto(telefono, 50, a2).
+prodotto(ventilatore, 70, a2).
+prodotto(mouse, 40, b1).
+prodotto(computer, 15, b1).
+prodotto(orologio, 100, b2).
+prodotto(monitor, 20, b2).
+
+richiesta_deposito_prodottoE(Agente, Prodotto) :>
+    prodotto(Prodotto, QtaAttuale, Settore),
+    format('Richiesta di deposito prodotto da agente ~w', Agente), nl,
+    messageA(Agente, send_message(risposta_deposito_prodotto(Prodotto, Settore), Me)).
+
+richiesta_deposito_prodottoE(Agente, Prodotto) :>
+    not(prodotto(Prodotto,_,_)),
+    format('Richiesta di deposito di un nuovo prodotto da agente ~w', Agente), nl,
+    messageA(Agente, send_message(risposta_deposito_prodotto(Prodotto, b1), Me)).
+
+prodotto_depositatoE(Prodotto, Qta, Settore) :> 
+    prodotto(Prodotto, QtaAttuale, Settore),
+    NuovaQta is Qta + QtaAttuale,
+    retract(prodotto(Prodotto, QtaAttuale, Settore)),
+    assertz(prodotto(Prodotto, NuovaQta, Settore)),
+    write('Nuova quantita: '),
+    write(NuovaQta).
+
+prodotto_depositatoE(Prodotto, Qta, Settore) :>
+    not(prodotto(Prodotto, _, Settore)),
+    assertz(prodotto(Prodotto, Qta, Settore)),
+    write('Prodotto aggiunto al magazzino').
+
+richiesta_prelievo_prodottoE(Agente, Prodotto, Qta) :>
+    prodotto(Prodotto, QtaAttuale, Settore),
+    Qta =< QtaAttuale,
+    format('Richiesta di prelievo di un prodotto da agente ~w', Agente),
+    sleep(2),
+    messageA(Agente, send_message(risposta_prelievo_prodotto(Prodotto, Settore), Me)).
+
+richiesta_prelievo_prodottoE(Agente, Prodotto, Qta) :>
+    prodotto(Prodotto, QtaAttuale, Settore),
+    Qta > QtaAttuale,
+    write('Richiesta di prelievo di un prodotto che non abbiamo'),
+    messageA(Agente, send_message(risposta_deposito_prodotto(Prodotto, null), Me)).
+
+richiesta_prelievo_prodottoE(Agente, Prodotto, Qta) :>
+    not(prodotto(Prodotto, _, _)),
+    format('Richiesta di prelievo di un prodotto che non abbiamo'),
+    messageA(Agente, send_message(risposta_prelievo_prodotto(Prodotto, null), Me)).
+
+prodotto_prelevatoE(Prodotto, Qta) :>
+    prodotto(Prodotto, QtaAttuale, Settore),
+    QtaAttuale > Qta,
+    NuovaQta is QtaAttuale - Qta,
+    retract(prodotto(Prodotto, QtaAttuale, Settore)),
+    assertz(prodotto(Prodotto, NuovaQta, Settore)),
+    write('Nuova quantita: '),
+    write(NuovaQta).
+
+prodotto_prelevatoE(Prodotto, Qta) :>
+    prodotto(Prodotto, QtaAttuale, Settore),
+    Qta == QtaAttuale,
+    retract(prodotto(Prodotto, QtaAttuale, Settore)),
+    write('Prodotto rimosso').
+
+prodotto_prelevatoE(Prodotto, Qta) :>
+    prodotto(Prodotto, QtaAttuale, Settore),
+    Qta > QtaAttuale,
+    write('Non posso rimuovere una quantita superiore a quella presente').
+
+prodotto_prelevatoE(Prodotto, Qta) :>
+    not(prodotto(Prodotto, _, _)),
+    write('Prodotto non trovato').
+
+disponibilita_prodottoE(Prodotto) :>
+    prodotto(Prodotto, Qta, Settore),
+    write(Prodotto),
+    write(Qta),
+    write(Settore).

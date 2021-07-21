@@ -1,0 +1,73 @@
+:- dynamic(deposito/2).
+:- dynamic(prelievo/2).
+
+richiesta_deposito_prodottoE(Prodotto, Qta) :>
+  not(deposito(_,_)),
+  not(prelievo(_,_)),
+  format('Richiesta deposito ~w', Prodotto), nl,
+  assertz(deposito(Prodotto, Qta)),
+  messageA(agentMagazzino, send_message(richiesta_deposito_prodotto(Me, Prodotto), Me)).
+
+richiesta_deposito_prodottoE(Prodotto, Qta) :>
+  deposito(X, Y),
+  write('Sono impegnato in un deposito').
+
+richiesta_deposito_prodottoE(Prodotto, Qta) :>
+  prelievo(X, Y),
+  write('Sono impegnato in un prelievo').
+
+risposta_deposito_prodottoE(Prodotto, Settore) :> 
+  vado_al_settoreA(Settore),
+  deposito(Prodotto, Qta),
+  depositoA(Prodotto, Qta, Settore),
+  torno_all_hubA,
+  retractall(deposito(_,_)).
+
+depositoA(Prodotto, Qta, Settore) :- 
+  sleep(3),
+  messageA(agentMagazzino, send_message(prodotto_depositato(Prodotto, Qta, Settore), Me)).
+
+richiesta_prelievo_prodottoE(Prodotto, QtaRichiesta) :>
+  not(deposito(_,_)),
+  not(prelievo(_,_)),
+  format('Sto prelevando il prodotto ~w', Prodotto), nl,
+  assertz(prelievo(Prodotto, QtaRichiesta)),
+  messageA(agentMagazzino, send_message(richiesta_prelievo_prodotto(Me, Prodotto, QtaRichiesta), Me)).
+
+richiesta_prelievo_prodottoE(Prodotto, Qta) :>
+  deposito(_, _),
+  write('Sono impegnato in un deposito').
+
+richiesta_prelievo_prodottoE(Prodotto, Qta) :>
+  prelievo(_, _),
+  write('Sono impegnato in un prelievo').
+
+risposta_prelievo_prodottoE(Prodotto, Settore) :>
+  write('Entro'),
+  X = null,
+  Settore \== null,
+  prelievo(Prodotto, QtaRichiesta),
+  vado_al_settoreA(Settore),
+  prelevoA(Prodotto, QtaRichiesta),
+  torno_all_hubA.
+
+risposta_prelievo_prodottoE(Prodotto, Settore) :>
+  write('Entro2'),
+  X = null,
+  Settore == X,
+  prodotto(Prodotto, QtaRichiesta),
+  write("Il prodotto non puo essere prelevato poiche non ci sono abbastanza unita"),
+  torno_all_hubA.
+
+prelevoA(Prodotto, Qta) :-
+  format("Prelevo il prodotto ~w", Prodotto),
+  sleep(3),
+  messageA(agentMagazzino, send_message(prodotto_prelevato(Prodotto, Qta), Me)).
+
+vado_al_settoreA(Settore) :- 
+  format("Vado al settore ~w", Settore),
+  sleep(3).
+
+operazione_completataA :- retractall(deposito(_,_)), retractall(prelievo(_,_)).
+
+torno_all_hubA :- sleep(3), operazione_completataA.

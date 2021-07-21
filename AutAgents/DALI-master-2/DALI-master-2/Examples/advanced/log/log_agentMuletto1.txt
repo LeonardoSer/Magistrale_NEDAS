@@ -1,0 +1,2 @@
+send_message(send_message(richiesta_prelievo_prodotto(_3185,computer,30),_3185))
+make(vado_al_settore(b1))
