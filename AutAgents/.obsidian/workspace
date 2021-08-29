@@ -7,11 +7,8 @@
         "id": "ab3f8de2e400b8f7",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "Serilli_Colapelle_Dorazio_DALIproject.md",
-            "mode": "source"
-          }
+          "type": "graph",
+          "state": {}
         }
       }
     ],
@@ -68,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Serilli_Colapelle_Dorazio_DALIproject.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +84,7 @@
   },
   "active": "ab3f8de2e400b8f7",
   "lastOpenFiles": [
+    "Serilli_Colapelle_Dorazio_DALIproject.md",
     "Untitled.md"
   ]
 }
