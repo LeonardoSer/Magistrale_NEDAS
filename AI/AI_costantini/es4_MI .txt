@@ -1,0 +1,21 @@
+
+solve(f(_)) :- !, write("f(_) is always true"), true.
+solve(true) :- !.
+solve((A,B)) :- !, solve(A), solve(B).
+solve(A) :- clausola(A :-B), solve(B).
+
+clausola(p(a):-true).
+clausola(p(b):-true).
+clausola(p(c):-true).
+clausola(q(b):-true).
+clausola(q(c):-true).
+clausola(g(X) :- (p(X), q(X))).
+clausola(h(X,Y) :- (g(X), g(Y))).
+
+
+
+
+
+
+
+

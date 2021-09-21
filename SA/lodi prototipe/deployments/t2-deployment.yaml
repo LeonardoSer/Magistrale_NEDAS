@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: t2-deployment
+  labels:
+    app: t2-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: t2-deployment
+  template:
+    metadata:
+      labels:
+        app: t2-deployment
+    
+    spec:
+      tolerations:
+      - key: "node.kubernetes.io/unreachable"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "node.kubernetes.io/not-ready"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "node.kubernetes.io/unreachable"
+        operator: "Exists"
+        effect: "NoExecute"
+        tolerationSeconds: 2
+      - key: "node.kubernetes.io/not-ready"
+        operator: "Exists"
+        effect: "NoExecute"
+        tolerationSeconds: 2
+      restartPolicy: Always
+      priorityClassName: low-priority
+
+      containers:
+      - name: echo-app
+        image: hashicorp/http-echo:0.2.3
+        args:
+        - "-text=T2_Service"
+
+        resources:
+          limits:
+            memory: "100Mi"
+            cpu: "7"
+          requests:
+            memory: "100Mi"
+            cpu: "7"
+

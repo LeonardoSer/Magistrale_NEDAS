@@ -1,0 +1,27 @@
+1) Si parli della Negazione per Fallimento in Prolog. si dica se la procedura
+not2(X) :- !, X, fail.
+not2(X).
+la implementa correttamente, o altrimenti cosa andrebbe cambiato.
+
+
+2) Consideriamo le seguenti coppie di termini.
+Costruire la rispettiva rappresentazione come alberi.
+Su tale base controllare se sono unificabili, ed evidenziarlo sugli alberi.
+Se unificano, dare lo mgu. Se no, spiegare il motivo.
+
+f(g(X,a),g(h(B),s)) e f(Y,g(h([Z]),X)) 
+
+p([[X]|[a,b]]) e p([[[v]]|[a|[Xs]]])
+
+3) Si definisca una procedura union(L1,L2,L3) che, date le
+liste L1 ed L2 fornisca in L3
+la loro concatenazione, senza elementi duplicati. Si assuma di disporre della funzione
+member(E,L) che verifica se E sia un membro della lista L.
+
+4) Si definisca un metainterprete che quando incontra f(_) ne determina il successo
+in automatico, indipendentemente dal valore della variabile o costante
+o termine che compaiano come argomento. Si sperimenti il metainterprete
+su un piccolo programma di esempio.
+
+
+

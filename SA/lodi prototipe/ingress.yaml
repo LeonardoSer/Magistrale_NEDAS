@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cluster-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /service-t2
+        pathType: Prefix
+        backend:
+          service:
+            name: t2-service
+            port:
+              number: 5678
+      - path: /service-t1-factory-1
+        pathType: Prefix
+        backend:
+          service:
+            name: t1-f1-service
+            port:
+              number: 5678
+      - path: /service-t1-factory-2
+        pathType: Prefix
+        backend:
+          service:
+            name: t1-f2-service
+            port:
+              number: 5678

@@ -1,0 +1,7 @@
+% unione L3 di due liste L1, L2 t.c. L3 non presenta duplicati
+
+union([E|L1],L2,L3) :- member(E,L1), union(L1,L2,L3).
+union([E|L1],L2,[E|L3]) :- \+ member(E,L1), union(L1,L2,L3).
+union([],[E|L2],L3) :- member(E,L2), union([],L2,L3).
+union([],[E|L2],[E|L3]) :- \+ member(E,L2), union([],L2,L3).
+union([],[],[]).
