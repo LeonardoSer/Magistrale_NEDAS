@@ -18,8 +18,7 @@ This repository is organized by course, each containing relevant materials such 
     NetFlow (Network Flows)
     NetOpt (Network Optimization)
     SA (Systems Architecture)
-    SocialMining
-    SocialMining_project
+    SM (Social Mining)
     WAlgo (Web Algorithms)
 
 Additionally, a libri (Books) folder contains selected readings that complement the coursework.
