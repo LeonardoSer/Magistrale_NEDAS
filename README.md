@@ -1,4 +1,4 @@
-# Univaq 1st Year NEDAS Master Material
+# NEDAS Master II Material (Univaq)
 
 Welcome to my repository for the 1st year of the NEDAS (Networks and Data Science) Master's program at the University of L'Aquila. This repository serves as a collection of materials, notes, and projects related to my coursework and research during the first year of the program.
 
