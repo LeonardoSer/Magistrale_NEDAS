@@ -14,16 +14,16 @@ Students and enthusiasts can use this repository as a reference for the NEDAS pr
 
 This repository is organized by course, each containing relevant materials such as lecture notes, assignments, projects, and study guides. Here's a brief overview of the included courses:
 
-- AI (Artificial Intelligence)
-- AutAgents (Autonomous Agents)
-- DS (Data Science)
-- ISNS (Information Systems and Network Security)
-- ML (Machine Learning)
-- NetFlow (Network Flows)
-- NetOpt (Network Optimization)
-- SA (Systems Architecture)
-- SM (Social Mining)
-- WAlgo (Web Algorithms)
+- `AI` (Artificial Intelligence)
+- `AutAgents` (Autonomous Agents)
+- `DS` (Data Science)
+- `ISNS` (Information Systems and Network Security)
+- `ML` (Machine Learning)
+- `NetFlow` (Network Flows)
+- `NetOpt` (Network Optimization)
+- `SA` (Systems Architecture)
+- `SM` (Social Mining)
+- `WAlgo` (Web Algorithms)
 
-Additionally, a libri (Books) folder contains selected readings that complement the coursework.
+Additionally, a `someBooks` folder contains selected readings that complement the coursework.
 
